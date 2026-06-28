@@ -18,6 +18,11 @@ def Analyser(path : str):
             status_code = 404,
             detail = "Path does not exist"
         )
+    if not os.path.isdir(path):
+        raise HTTPException(
+            status_code = 400,
+            detail = "This file is not a directory"
+        )
     files = scan_repository(path)
     return {
         "files" : files
