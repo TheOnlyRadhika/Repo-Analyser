@@ -1,0 +1,13 @@
+[project]
+name = "repository-analyser-backend"
+version = "0.1.0"
+description = "Backend for Repository Analyzer"
+requires-python = ">=3.11"
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "python-dotenv",
+    "google-genai",
+    "networkx",
+]
