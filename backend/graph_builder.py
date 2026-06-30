@@ -12,17 +12,19 @@ def build_graph(files):
 
     for file in files:
         nodes.append({
-            "id" : file["name"]
-        })
+        "id": file["name"],
+        "name": file["name"],
+        "path": file["path"],
+        "extension": file["extension"],
+        "size": file["size"],
+        "loc": file["Lines Of Code (loc)"],
+        "dependencies": file["dependencies"]
+    })
     
     for file in files:
-
         for dependency in file["dependencies"]:
-
             dependency_file = dependency + ".py"
-
             if dependency_file in local_files:
-
                 edges.append(
                     {
                         "source": file["name"],

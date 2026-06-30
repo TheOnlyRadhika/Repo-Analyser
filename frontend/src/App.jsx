@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ReactFlow,
   Controls,
@@ -11,10 +12,12 @@ import {
 import { getLayoutedElements } from "./layout";
 import "reactflow/dist/style.css";
 import "./App.css";
+import Sidebar from "./Sidebar";
 
 function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   async function analyseRepository() {
     try {
@@ -31,8 +34,9 @@ function App() {
           y: index * 100,
         },
         data: {
-          label: node.id,
-        },
+          ...node,
+          label: node.name,
+        }
       }));
 
       const flowEdges = graph.edges.map((edge, index) => ({
@@ -49,24 +53,42 @@ function App() {
       console.error(error);
     }
   }
+  function handleNodeClick(event, node) {
+    setSelectedFile(node.data);
+  }
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <button onClick={analyseRepository}>
-        Analyse Repository
-      </button>
+    <div
+      style={{
+        display: "flex",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
 
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        fitView
-      >
-        <Background />
-        <MiniMap />
-        <Controls />
-      </ReactFlow>
+      <div style={{ flex: 3 }}>
+
+        <button onClick={analyseRepository}>
+          Analyse Repository
+        </button>
+
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onNodeClick={handleNodeClick}
+          fitView
+        >
+          <Background />
+          <MiniMap />
+          <Controls />
+        </ReactFlow>
+
+      </div>
+
+      <Sidebar file={selectedFile} />
+
     </div>
   );
 }
