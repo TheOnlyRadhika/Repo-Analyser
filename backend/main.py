@@ -1,9 +1,13 @@
 from fastapi.middleware.cors import CORSMiddleware
-
+from pydantic import BaseModel
 from fastapi import FastAPI , HTTPException
 from scanner import scan_repository
 import os
 from graph_builder import build_graph
+from service_ai import summarize_file
+
+class SummaryRequest(BaseModel):
+    path: str
 
 app = FastAPI()
 
@@ -40,3 +44,12 @@ def Analyser(path : str):
     graph = build_graph(files)
 
     return graph
+
+@app.post("/summarise")
+def summarise(request: SummaryRequest):
+
+    summary = summarize_file(request.path)
+
+    return {
+        "summary": summary
+    }

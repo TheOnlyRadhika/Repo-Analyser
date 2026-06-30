@@ -18,6 +18,7 @@ function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [summary, setSummary] = useState("");
 
   async function analyseRepository() {
     try {
@@ -53,8 +54,37 @@ function App() {
       console.error(error);
     }
   }
-  function handleNodeClick(event, node) {
+  async function handleNodeClick(event, node) {
     setSelectedFile(node.data);
+    await fetchSummary(node.data);
+  }
+
+
+
+  async function fetchSummary(file) {
+    console.log("Summary state:", summary);
+
+    const response = await fetch(
+      "http://127.0.0.1:8000/summarise",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          path: file.path,
+          max_words: 150,
+          style: "technical",
+        }),
+      },
+      console.log(file)
+    );
+
+    const data = await response.json();
+
+    console.log("Response from backend:", data);
+
+    setSummary(data.summary);
   }
 
   return (
@@ -87,7 +117,10 @@ function App() {
 
       </div>
 
-      <Sidebar file={selectedFile} />
+      <Sidebar
+        file={selectedFile}
+        summary={summary}
+      />
 
     </div>
   );

@@ -1,5 +1,6 @@
-function Sidebar({ file }) {
 
+function Sidebar({ file, summary }) {
+    console.log("Sidebar summary:", summary);
     if (!file) {
         return (
             <div className="sidebar">
@@ -31,7 +32,9 @@ function Sidebar({ file }) {
                     </li>
                 ))}
             </ul>
-
+            <hr />
+            <h3>AI Summary</h3>
+            <p>{summary}</p>
         </div>
     );
 }
