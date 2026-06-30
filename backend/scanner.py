@@ -2,6 +2,7 @@ import os
 from dependency_parser import extract_dependencies
 
 
+
 def count_loc(filepath):
     try:
         with open(filepath, 'r',encoding="utf-8") as file:

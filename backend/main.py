@@ -1,8 +1,21 @@
+from fastapi.middleware.cors import CORSMiddleware
+
 from fastapi import FastAPI , HTTPException
 from scanner import scan_repository
 import os
+from graph_builder import build_graph
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -24,6 +37,6 @@ def Analyser(path : str):
             detail = "This file is not a directory"
         )
     files = scan_repository(path)
-    return {
-        "files" : files
-    }
+    graph = build_graph(files)
+
+    return graph
