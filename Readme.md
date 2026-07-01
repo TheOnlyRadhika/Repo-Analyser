@@ -1,4 +1,4 @@
-# 🧠 Repository Analyzer & AI Code Visualizer
+# Repository Analyzer & AI Code Visualizer
 
 An AI-powered full-stack application that analyzes the structure of a software repository, constructs an interactive dependency graph, and generates intelligent summaries for individual source files using Google's Gemini API.
 
@@ -6,9 +6,9 @@ The project is designed to help developers quickly understand unfamiliar codebas
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 📂 Repository Analysis
+###  Repository Analysis
 - Recursively scans a local repository
 - Extracts metadata for every Python source file
 - Computes:
@@ -21,7 +21,7 @@ The project is designed to help developers quickly understand unfamiliar codebas
 
 ---
 
-### 🔍 Dependency Analysis
+###  Dependency Analysis
 
 Uses Python's Abstract Syntax Tree (AST) to parse source files and detect module imports.
 
@@ -41,7 +41,7 @@ graph_builder.py
 
 ---
 
-### 🌐 REST API (FastAPI)
+###  REST API (FastAPI)
 
 The backend exposes REST endpoints for:
 
@@ -52,7 +52,7 @@ The backend exposes REST endpoints for:
 
 ---
 
-### 📈 Interactive Dependency Graph
+###  Interactive Dependency Graph
 
 The frontend visualizes repository dependencies using **React Flow**.
 
@@ -66,7 +66,7 @@ Features include:
 
 ---
 
-### 🤖 AI-Powered Code Summarization
+###  AI-Powered Code Summarization
 
 Selecting any file in the graph sends its contents to Google's Gemini API.
 
@@ -100,7 +100,7 @@ Possible Improvements:
 
 ---
 
-## 🏗️ Project Architecture
+##  Project Architecture
 
 ```
                  User
@@ -141,7 +141,7 @@ Possible Improvements:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend
 
@@ -164,7 +164,7 @@ Possible Improvements:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 Repo-Analyser/
@@ -194,7 +194,7 @@ Repo-Analyser/
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 ### Clone Repository
 
@@ -268,7 +268,7 @@ http://localhost:5173
 
 ---
 
-## 💡 How It Works
+## How It Works
 
 1. User clicks **Analyze Repository**
 2. FastAPI scans every Python file
@@ -282,7 +282,7 @@ http://localhost:5173
 
 ---
 
-## 🎯 Learning Outcomes
+## Learning Outcomes
 
 This project demonstrates:
 
@@ -299,7 +299,7 @@ This project demonstrates:
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Repository upload support
 - GitHub repository analysis
@@ -311,17 +311,6 @@ This project demonstrates:
 - Dark/Light theme
 - Docker deployment
 - Authentication
-
----
-
-## 📸 Screenshots
-
-> Add screenshots of:
-
-- Dependency Graph
-- Sidebar
-- AI Summary
-- Complete Dashboard
 
 ---
 
